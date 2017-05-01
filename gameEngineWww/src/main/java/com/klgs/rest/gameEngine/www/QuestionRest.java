@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.klgs.rest.gameEngine.www.model.Question;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") //When we are caling a REST API from another application
+@CrossOrigin(origins = "http://localhost:3000") //When we are calling a REST API from another application
 //running on a particular server and port we will have to specify that we want to allow 
 //access to that another server application. For this we have added this CROS else we will get
 //403 in our angular application
