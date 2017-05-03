@@ -7,6 +7,14 @@ public class Team {
 	String teamName;
 	String teammatesFull;
 	String teammates[];
+	String questionIds[];
+	
+	public String[] getQuestionIds() {
+		return questionIds;
+	}
+	public void setQuestionsIds(String[] questionIds) {
+		this.questionIds = questionIds;
+	}
 	public String getTeamId() {
 		return teamId;
 	}
@@ -34,8 +42,7 @@ public class Team {
 	@Override
 	public String toString() {
 		return "Team [teamId=" + teamId + ", teamName=" + teamName + ", teammatesFull=" + teammatesFull + ", teammates="
-				+ Arrays.toString(teammates) + "]";
-	}
-	
+				+ Arrays.toString(teammates) + ", questionsIds=" + Arrays.toString(questionIds) + "]";
+	}	
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.klgs.rest.gameEngine.www.model.Question;
+import com.klgs.rest.gameEngine.www.util.UuidGenerator;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") //When we are calling a REST API from another application
@@ -18,6 +19,7 @@ public class QuestionRest {
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public Question saveQuestion(@RequestBody Question question) {
 		System.out.println("This is inside the post method of Question" + question);
+		question.setQuestionId(UuidGenerator.generateUuid());
 		return question;
 	}
 	

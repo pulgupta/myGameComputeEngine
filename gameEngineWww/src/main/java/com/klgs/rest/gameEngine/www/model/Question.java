@@ -2,7 +2,7 @@ package com.klgs.rest.gameEngine.www.model;
 
 public class Question {
 	
-	private int questionId;
+	private String questionId;
 	private String question;
 	private String optionsFull;
 	private String options;
@@ -10,10 +10,10 @@ public class Question {
 	private int date;
 	private int ownerId;
     
-	public int getQuestionId() {
+	public String getQuestionId() {
 		return questionId;
 	}
-	public void setQuestionId(int questionId) {
+	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
 	public String getQuestion() {
