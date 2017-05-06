@@ -38,6 +38,20 @@ public class QuestionRest {
 		return question;
 	}
 	
+	@RequestMapping(value="question/{questionId}", method=RequestMethod.PUT)
+	public ResponseEntity<Question> updateQuestion(@PathVariable String questionId, @RequestBody Question updatedQuestion) {
+		Question question = store.getQuestion(questionId);
+		if(question==null)
+			return new ResponseEntity<Question>(HttpStatus.NO_CONTENT);
+		//Mapping old question with new question
+		question.setQuestion(updatedQuestion.getQuestion());
+		question.setTags(updatedQuestion.getTags());
+		question.setOwnerId(updatedQuestion.getOwnerId());
+		question.setOptions(updatedQuestion.getOptions());
+		question.setDate(updatedQuestion.getDate());
+		return new ResponseEntity<Question>(question,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="question/{questionId}", method=RequestMethod.GET)
 	public ResponseEntity<Question> getQuestion(@PathVariable String questionId) {
 		log.info("In get by Id call of question");
@@ -49,7 +63,7 @@ public class QuestionRest {
 	}
 	
 	//URL -> /vote/{questionId}?option={option}
-	@RequestMapping(value="vote/{questionId}?", method=RequestMethod.POST) 
+	@RequestMapping(value="vote/{questionId}", method=RequestMethod.PUT) 
 	public ResponseEntity<HttpStatus> updateVote(@PathVariable String questionId, @RequestParam String option) {
 		if(store.getQuestion(questionId)==null)
 			return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);

@@ -10,7 +10,7 @@ public class Question {
 	private String options;
 	private String tags;
 	private int date;
-	private int ownerId;
+	private String ownerId;
 	private Map<String, Integer> votestatistics;
     
 	public void addVote(String option) {
@@ -63,10 +63,10 @@ public class Question {
 	public void setDate(int date) {
 		this.date = date;
 	}
-	public int getOwnerId() {
+	public String getOwnerId() {
 		return ownerId;
 	}
-	public void setOwnerId(int ownerId) {
+	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
 	@Override
