@@ -1,5 +1,7 @@
 package com.klgs.rest.gameEngine.www;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ import com.klgs.rest.gameEngine.www.util.UuidGenerator;
 @RestController
 public class QuestionRest {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	InMemoryStore store;
 	
@@ -35,6 +39,7 @@ public class QuestionRest {
 	
 	@RequestMapping(value="/{questionId}", method=RequestMethod.GET)
 	public ResponseEntity<Question> getQuestion(@PathVariable String questionId) {
+		log.info("In get by Id call of question");
 		Question question = store.getQuestion(questionId);
 		if(question == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
