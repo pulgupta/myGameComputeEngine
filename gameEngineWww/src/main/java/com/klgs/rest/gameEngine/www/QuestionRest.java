@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.klgs.rest.gameEngine.www.model.Question;
 import com.klgs.rest.gameEngine.www.util.InMemoryStore;
@@ -20,7 +21,7 @@ import com.klgs.rest.gameEngine.www.util.UuidGenerator;
 //access to that another server application. For this we have added this CROS else we will get
 //403 in our angular application
 @CrossOrigin(origins = "http://localhost:3000") 
-@RequestMapping(value="/question")
+@RequestMapping(value="/")
 @RestController
 public class QuestionRest {
 
@@ -29,7 +30,7 @@ public class QuestionRest {
 	@Autowired
 	InMemoryStore store;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="question", method=RequestMethod.POST)
 	public Question saveQuestion(@RequestBody Question question) {
 		System.out.println("This is inside the post method of Question" + question);
 		question.setQuestionId(UuidGenerator.generateUuid());
@@ -37,7 +38,7 @@ public class QuestionRest {
 		return question;
 	}
 	
-	@RequestMapping(value="/{questionId}", method=RequestMethod.GET)
+	@RequestMapping(value="question/{questionId}", method=RequestMethod.GET)
 	public ResponseEntity<Question> getQuestion(@PathVariable String questionId) {
 		log.info("In get by Id call of question");
 		Question question = store.getQuestion(questionId);
@@ -45,6 +46,18 @@ public class QuestionRest {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else 
 			return new ResponseEntity<Question>(question, HttpStatus.OK);
+	}
+	
+	//URL -> /vote/{questionId}?option={option}
+	@RequestMapping(value="vote/{questionId}?", method=RequestMethod.POST) 
+	public ResponseEntity<HttpStatus> updateVote(@PathVariable String questionId, @RequestParam String option) {
+		if(store.getQuestion(questionId)==null)
+			return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+		if(!store.getQuestion(questionId).checkOption(option))
+			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_GATEWAY);
+		Question question = store.getQuestion(questionId);
+		question.addVote(option);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/version.info", method=RequestMethod.GET, produces="application/json")

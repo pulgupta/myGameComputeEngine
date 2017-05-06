@@ -1,5 +1,7 @@
 package com.klgs.rest.gameEngine.www.model;
 
+import java.util.Map;
+
 public class Question {
 	
 	private String questionId;
@@ -9,7 +11,22 @@ public class Question {
 	private String tags;
 	private int date;
 	private int ownerId;
+	private Map<String, Integer> votestatistics;
     
+	public void addVote(String option) {
+		votestatistics.put(option, votestatistics.get(option)+1);
+	}
+	
+	public int getVote(String option) {
+		return votestatistics.get(option);
+	}
+	
+	public boolean checkOption(String option) {
+		if(votestatistics.containsKey(option))
+			return true;
+		return false;
+	}
+	
 	public String getQuestionId() {
 		return questionId;
 	}
