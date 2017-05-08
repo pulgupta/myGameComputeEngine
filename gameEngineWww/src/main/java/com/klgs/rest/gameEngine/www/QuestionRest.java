@@ -34,6 +34,7 @@ public class QuestionRest {
 	public Question saveQuestion(@RequestBody Question question) {
 		System.out.println("This is inside the post method of Question" + question);
 		question.setQuestionId(UuidGenerator.generateUuid());
+		question.splitAndSaveQuestion();
 		store.addQuestion(question);
 		return question;
 	}
@@ -49,6 +50,7 @@ public class QuestionRest {
 		question.setOwnerId(updatedQuestion.getOwnerId());
 		question.setOptions(updatedQuestion.getOptions());
 		question.setDate(updatedQuestion.getDate());
+		question.splitAndSaveQuestion();
 		return new ResponseEntity<Question>(question,HttpStatus.OK);
 	}
 	

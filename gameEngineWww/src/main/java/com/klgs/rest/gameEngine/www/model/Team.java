@@ -45,4 +45,9 @@ public class Team {
 				+ Arrays.toString(teammates) + ", questionsIds=" + Arrays.toString(questionIds) + "]";
 	}	
 	
+	public void splitAndSaveMates() {
+		this.teammates = this.teammatesFull.split(",");
+	}
+	
+	
 }

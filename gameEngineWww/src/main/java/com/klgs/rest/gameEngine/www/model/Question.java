@@ -7,7 +7,7 @@ public class Question {
 	private String questionId;
 	private String question;
 	private String optionsFull;
-	private String options;
+	private String[] options;
 	private String tags;
 	private int date;
 	private String ownerId;
@@ -45,12 +45,22 @@ public class Question {
 	public void setOptionsFull(String optionsFull) {
 		this.optionsFull = optionsFull;
 	}
-	public String getOptions() {
+	public String[] getOptions() {
 		return options;
 	}
-	public void setOptions(String options) {
+
+	public void setOptions(String[] options) {
 		this.options = options;
 	}
+
+	public Map<String, Integer> getVotestatistics() {
+		return votestatistics;
+	}
+
+	public void setVotestatistics(Map<String, Integer> votestatistics) {
+		this.votestatistics = votestatistics;
+	}
+
 	public String getTags() {
 		return tags;
 	}
@@ -73,6 +83,10 @@ public class Question {
 	public String toString() {
 		return "Question [questionId=" + questionId + ", question=" + question + ", optionsFull=" + optionsFull
 				+ ", options=" + options + ", tags=" + tags + ", date=" + date + ", ownerId=" + ownerId + "]";
+	}
+	
+	public void splitAndSaveQuestion() {
+		this.options = this.optionsFull.split(";");
 	}
     
 }
