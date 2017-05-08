@@ -60,8 +60,10 @@ public class QuestionRest {
 		Question question = store.getQuestion(questionId);
 		if(question == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		else 
+		else {
+			log.info(question.toString());
 			return new ResponseEntity<Question>(question, HttpStatus.OK);
+		}
 	}
 	
 	//URL -> /vote/{questionId}?option={option}

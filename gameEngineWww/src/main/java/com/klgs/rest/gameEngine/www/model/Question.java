@@ -1,5 +1,6 @@
 package com.klgs.rest.gameEngine.www.model;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Question {
@@ -79,12 +80,16 @@ public class Question {
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", question=" + question + ", optionsFull=" + optionsFull
-				+ ", options=" + options + ", tags=" + tags + ", date=" + date + ", ownerId=" + ownerId + "]";
+				+ ", options=" + Arrays.toString(options) + ", tags=" + tags + ", date=" + date + ", ownerId=" + ownerId
+				+ ", votestatistics=" + votestatistics + "]";
 	}
-	
+
 	public void splitAndSaveQuestion() {
 		this.options = this.optionsFull.split(";");
 	}

@@ -42,8 +42,10 @@ public class TeamRest {
 		log.info("Inside get by id of teams");
 		if(team == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		else 
+		else { 
+			log.info(team.toString());
 			return new ResponseEntity<Team>(team, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value="/version.info", method=RequestMethod.GET, produces="application/json")

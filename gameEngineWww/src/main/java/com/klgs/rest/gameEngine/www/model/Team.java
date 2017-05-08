@@ -39,11 +39,14 @@ public class Team {
 	public void setTeammates(String[] teammates) {
 		this.teammates = teammates;
 	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Team [teamId=" + teamId + ", teamName=" + teamName + ", teammatesFull=" + teammatesFull + ", teammates="
-				+ Arrays.toString(teammates) + ", questionsIds=" + Arrays.toString(questionIds) + "]";
-	}	
+				+ Arrays.toString(teammates) + ", questionIds=" + Arrays.toString(questionIds) + "]";
+	}
 	
 	public void splitAndSaveMates() {
 		this.teammates = this.teammatesFull.split(",");
