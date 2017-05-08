@@ -91,7 +91,7 @@ public class Question {
 	}
 
 	public void splitAndSaveQuestion() {
-		this.options = this.optionsFull.split(";");
+		this.options = this.optionsFull.split(",");
 	}
     
 }
