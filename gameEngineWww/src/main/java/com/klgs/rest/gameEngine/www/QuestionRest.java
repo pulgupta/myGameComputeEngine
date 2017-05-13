@@ -78,7 +78,7 @@ public class QuestionRest {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/version.info", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="question/version.info", method=RequestMethod.GET, produces="application/json")
 	public String verionInfo() {
 		return "1.0";
 	}

@@ -1,12 +1,12 @@
 package com.klgs.rest.gameEngine.www.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Team {
 	String teamId;
 	String teamName;
-	String teammatesFull;
-	String teammates[];
+	List<User> teammates;
 	String questionIds[];
 	
 	public String[] getQuestionIds() {
@@ -27,30 +27,20 @@ public class Team {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-	public String getTeammatesFull() {
-		return teammatesFull;
-	}
-	public void setTeammatesFull(String teammatesFull) {
-		this.teammatesFull = teammatesFull;
-	}
-	public String[] getTeammates() {
+	public List<User> getTeammates() {
 		return teammates;
 	}
-	public void setTeammates(String[] teammates) {
+	public void setTeammates(List<User> teammates) {
 		this.teammates = teammates;
 	}
-
-	
 	
 	@Override
 	public String toString() {
-		return "Team [teamId=" + teamId + ", teamName=" + teamName + ", teammatesFull=" + teammatesFull + ", teammates="
-				+ Arrays.toString(teammates) + ", questionIds=" + Arrays.toString(questionIds) + "]";
+		return "Team [teamId=" + teamId + ", teamName=" + teamName + " teammates="
+				+ Arrays.toString(teammates.toArray()) + ", questionIds=" + Arrays.toString(questionIds) + "]";
 	}
 	
-	public void splitAndSaveMates() {
-		this.teammates = this.teammatesFull.split(",");
+	public void addteammates(User user){
+		this.teammates.add(user);
 	}
-	
-	
 }
