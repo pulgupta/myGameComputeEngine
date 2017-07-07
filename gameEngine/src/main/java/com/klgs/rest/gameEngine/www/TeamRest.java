@@ -31,7 +31,6 @@ public class TeamRest {
 		System.out.println("This is inside the post method of Team" + team);
 		String teamId = UuidGenerator.generateUuid();
 		team.setTeamId(teamId);
-		team.splitAndSaveMates();
 		store.addTeam(team);
 		return team;
 	}

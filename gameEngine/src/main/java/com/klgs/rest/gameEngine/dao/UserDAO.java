@@ -1,8 +1,10 @@
 package com.klgs.rest.gameEngine.dao;
 
+import com.klgs.rest.gameEngine.model.User;
+
 public class UserDAO {
 	
-	public void createUser() {
+	public void createUser(User user) {
 		
 	}
 	

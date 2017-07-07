@@ -35,7 +35,6 @@ public class QuestionRest {
 	public Question saveQuestion(@RequestBody Question question) {
 		System.out.println("This is inside the post method of Question" + question);
 		question.setQuestionId(UuidGenerator.generateUuid());
-		question.splitAndSaveQuestion();
 		store.addQuestion(question);
 		return question;
 	}
@@ -48,10 +47,9 @@ public class QuestionRest {
 		//Mapping old question with new question
 		question.setQuestion(updatedQuestion.getQuestion());
 		question.setTags(updatedQuestion.getTags());
-		question.setOwnerId(updatedQuestion.getOwnerId());
+		
 		question.setOptions(updatedQuestion.getOptions());
-		question.setDate(updatedQuestion.getDate());
-		question.splitAndSaveQuestion();
+		
 		return new ResponseEntity<Question>(question,HttpStatus.OK);
 	}
 	
@@ -72,10 +70,7 @@ public class QuestionRest {
 	public ResponseEntity<HttpStatus> updateVote(@PathVariable String questionId, @RequestParam String option) {
 		if(store.getQuestion(questionId)==null)
 			return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
-		if(!store.getQuestion(questionId).checkOption(option))
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_GATEWAY);
-		Question question = store.getQuestion(questionId);
-		question.addVote(option);
+		//Question question = store.getQuestion(questionId);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
