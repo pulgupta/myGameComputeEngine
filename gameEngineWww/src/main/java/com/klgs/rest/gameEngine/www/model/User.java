@@ -24,4 +24,74 @@ public class User {
 	//A user can be a participant in multiple teams
 	private Set<String> teamParticipantUids;
 
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public String getFirstName() {
+		return FirstName;
+	}
+
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+
+	public String getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public String getBio() {
+		return Bio;
+	}
+
+	public void setBio(String bio) {
+		Bio = bio;
+	}
+
+	public Set<String> getTeamParticipantUids() {
+		return teamParticipantUids;
+	}
+
+	public void setTeamParticipantUids(Set<String> teamParticipantUids) {
+		this.teamParticipantUids = teamParticipantUids;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
+				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", teamParticipantUids="
+				+ teamParticipantUids + "]";
+	}
 }

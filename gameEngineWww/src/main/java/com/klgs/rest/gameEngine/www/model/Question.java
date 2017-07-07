@@ -1,8 +1,6 @@
 package com.klgs.rest.gameEngine.www.model;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,7 +27,8 @@ public class Question {
 	private Set<String> teamIds;
 	private Map<String, Integer> voteStatistics;
     
-	public void addVote(String option) {
+	//This being just the entity class we will remove all the business logic out of this class
+	/*public void addVote(String option) {
 		voteStatistics.put(option, voteStatistics.get(option)+1);
 	}
 	
@@ -50,7 +49,7 @@ public class Question {
 		for(String option : optionsList)
 			this.options.add(option);
 	}
-	
+	*/
 	//********************GETTERS AND SETTERS*********************************************************
 	public String getQuestionId() {
 		return questionId;
