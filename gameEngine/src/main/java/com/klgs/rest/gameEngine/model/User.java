@@ -3,12 +3,22 @@ package com.klgs.rest.gameEngine.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * The user Entity. This will allow us to store user data and link users to teams
  * @author pulgupta
  * To make things truly anonymous we are not tracking which user has casted which votes.
  * We can only see to which team user belong.
  */
+
+@Entity
+@Table(name="User", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "uid")})
 public class User {
 	
 	private String uid;
@@ -16,6 +26,8 @@ public class User {
 	private String LastName;
 	
 	//This will be the main primary key we will be using for linking the teams
+	@Id
+	@Column(name="EMAIL", unique = true, nullable = false)
 	private String emailId;
 	private String userName;
 	private Date dob;
@@ -23,7 +35,6 @@ public class User {
 	
 	//A user can be a participant in multiple teams
 	private Set<String> teamParticipantUids;
-
 	private boolean isActive;
 	
 	
