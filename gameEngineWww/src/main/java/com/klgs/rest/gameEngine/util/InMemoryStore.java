@@ -1,12 +1,12 @@
-package com.klgs.rest.gameEngine.www.util;
+package com.klgs.rest.gameEngine.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.klgs.rest.gameEngine.www.model.Question;
-import com.klgs.rest.gameEngine.www.model.Team;
+import com.klgs.rest.gameEngine.model.Question;
+import com.klgs.rest.gameEngine.model.Team;
 
 @Component
 public class InMemoryStore {

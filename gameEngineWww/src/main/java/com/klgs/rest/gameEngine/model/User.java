@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www.model;
+package com.klgs.rest.gameEngine.model;
 
 import java.util.Date;
 import java.util.Set;
@@ -23,6 +23,17 @@ public class User {
 	
 	//A user can be a participant in multiple teams
 	private Set<String> teamParticipantUids;
+
+	private boolean isActive;
+	
+	
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	public String getUid() {
 		return uid;
@@ -92,6 +103,6 @@ public class User {
 	public String toString() {
 		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
 				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", teamParticipantUids="
-				+ teamParticipantUids + "]";
+				+ teamParticipantUids + ", isActive=" + isActive + "]";
 	}
 }

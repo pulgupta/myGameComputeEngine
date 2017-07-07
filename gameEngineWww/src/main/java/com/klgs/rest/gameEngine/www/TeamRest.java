@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klgs.rest.gameEngine.www.model.Team;
-import com.klgs.rest.gameEngine.www.util.InMemoryStore;
-import com.klgs.rest.gameEngine.www.util.UuidGenerator;
+import com.klgs.rest.gameEngine.model.Team;
+import com.klgs.rest.gameEngine.util.InMemoryStore;
+import com.klgs.rest.gameEngine.util.UuidGenerator;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

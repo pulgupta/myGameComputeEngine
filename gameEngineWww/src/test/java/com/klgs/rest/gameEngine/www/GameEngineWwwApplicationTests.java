@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.klgs.rest.gameEngine.www.util.InMemoryStore;
+import com.klgs.rest.gameEngine.util.InMemoryStore;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

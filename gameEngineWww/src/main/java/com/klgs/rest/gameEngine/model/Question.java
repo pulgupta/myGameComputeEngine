@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www.model;
+package com.klgs.rest.gameEngine.model;
 
 import java.util.Date;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * THe question entity
  * @author pulgupta
- * Each question will either be open to all or to availale to certain team ids.
+ * Each question will either be open to all or to available to certain team ids.
  */
 public class Question {
 	

@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www.util;
+package com.klgs.rest.gameEngine.util;
 
 import java.util.UUID;
 
