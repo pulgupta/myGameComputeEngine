@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.advices;
+package com.klgs.gameEngine.advices;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseStatus;

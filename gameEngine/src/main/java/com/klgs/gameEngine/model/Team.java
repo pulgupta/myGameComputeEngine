@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.model;
+package com.klgs.gameEngine.model;
 
 import java.util.Set;
 

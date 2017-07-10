@@ -1,12 +1,12 @@
-package com.klgs.rest.gameEngine.util;
+package com.klgs.gameEngine.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.klgs.rest.gameEngine.model.Question;
-import com.klgs.rest.gameEngine.model.Team;
+import com.klgs.gameEngine.model.Question;
+import com.klgs.gameEngine.model.Team;
 
 @Deprecated
 @Component

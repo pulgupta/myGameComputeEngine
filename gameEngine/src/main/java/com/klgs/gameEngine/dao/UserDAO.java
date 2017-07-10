@@ -1,8 +1,8 @@
-package com.klgs.rest.gameEngine.dao;
+package com.klgs.gameEngine.dao;
 
 import org.springframework.stereotype.Component;
 
-import com.klgs.rest.gameEngine.model.User;
+import com.klgs.gameEngine.model.User;
 
 @Component
 public interface UserDAO {

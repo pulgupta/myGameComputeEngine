@@ -1,6 +1,6 @@
-package com.klgs.rest.gameEngine.dao;
+package com.klgs.gameEngine.dao;
 
-import com.klgs.rest.gameEngine.model.Question;
+import com.klgs.gameEngine.model.Question;
 
 public class QuestionDAOImpl implements QuestionDAO{
 

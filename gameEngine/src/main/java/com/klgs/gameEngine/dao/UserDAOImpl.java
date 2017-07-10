@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.dao;
+package com.klgs.gameEngine.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.klgs.rest.gameEngine.model.User;
+import com.klgs.gameEngine.model.User;
 
 @Repository
 @Transactional

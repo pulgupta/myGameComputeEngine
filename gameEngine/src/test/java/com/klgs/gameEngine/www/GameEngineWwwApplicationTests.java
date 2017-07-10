@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www;
+package com.klgs.gameEngine.www;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,8 +19,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.klgs.rest.gameEngine.dao.UserDAO;
-import com.klgs.rest.gameEngine.model.User;
+import com.klgs.gameEngine.dao.UserDAO;
+import com.klgs.gameEngine.model.User;
+import com.klgs.gameEngine.www.UserRest;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

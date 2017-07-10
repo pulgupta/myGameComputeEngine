@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.DAO;
+package com.klgs.gameEngine.DAO;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.klgs.rest.gameEngine.GameEngineWwwApplication;
-import com.klgs.rest.gameEngine.dao.UserDAO;
-import com.klgs.rest.gameEngine.model.User;
+import com.klgs.gameEngine.GameEngineWwwApplication;
+import com.klgs.gameEngine.dao.UserDAO;
+import com.klgs.gameEngine.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { GameEngineWwwApplication.class })

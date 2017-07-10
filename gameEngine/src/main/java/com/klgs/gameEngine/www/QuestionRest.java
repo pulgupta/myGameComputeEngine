@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www;
+package com.klgs.gameEngine.www;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klgs.rest.gameEngine.model.Question;
-import com.klgs.rest.gameEngine.util.InMemoryStore;
-import com.klgs.rest.gameEngine.util.UuidGenerator;
+import com.klgs.gameEngine.model.Question;
+import com.klgs.gameEngine.util.InMemoryStore;
+import com.klgs.gameEngine.util.UuidGenerator;
 
 //When we are calling a REST API from another application
 //running on a particular server and port we will have to specify that we want to allow 

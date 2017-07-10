@@ -1,4 +1,4 @@
-package com.klgs.rest.gameEngine.www;
+package com.klgs.gameEngine.www;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klgs.rest.gameEngine.dao.UserDAO;
-import com.klgs.rest.gameEngine.model.User;
+import com.klgs.gameEngine.dao.UserDAO;
+import com.klgs.gameEngine.model.User;
 
 @RestController
 //@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8282"})

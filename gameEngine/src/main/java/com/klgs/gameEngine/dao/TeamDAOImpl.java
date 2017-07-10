@@ -1,6 +1,6 @@
-package com.klgs.rest.gameEngine.dao;
+package com.klgs.gameEngine.dao;
 
-import com.klgs.rest.gameEngine.model.Team;
+import com.klgs.gameEngine.model.Team;
 
 public class TeamDAOImpl implements TeamDAO {
 
