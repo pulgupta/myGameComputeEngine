@@ -1,21 +1,10 @@
 package com.klgs.rest.gameEngine.dao;
 
-public class QuestionDAO {
+import com.klgs.rest.gameEngine.model.Question;
 
-	public void createQuestion() {
-		
-	}
-	
-	public void updateQuestion() {
-		
-	}
-	
-	public void deleteQuestion() {
-		
-	}
-	
-	public void getQuestion() {
-		
-	}
-
+public interface QuestionDAO {
+	public void createQuestion(Question question);
+	public void updateQuestion(Question question);
+	public void deleteQuestion(String questionId);
+	public Question getQuestion(String questionId);
 }
