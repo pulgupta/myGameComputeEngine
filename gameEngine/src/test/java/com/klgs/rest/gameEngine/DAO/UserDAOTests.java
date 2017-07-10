@@ -1,6 +1,7 @@
 package com.klgs.rest.gameEngine.DAO;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,15 +21,17 @@ public class UserDAOTests {
 	UserDAO userDao;
 	
 	@Test
-	public void testCreateUser() {
+	public void testCreateUserShouldExistsInDatabase() {
 		User user = new User();
 		String emailId = "pulgupta@gmail.com";
 		user.setEmailId(emailId);
+		user.setFirstName("Pulkit");
 		userDao.createUser(user);
 		
 		//Test if the user was indeed saved
 		User newUser = userDao.getUser(emailId);
 		assertNotNull(newUser);
+		assertTrue(newUser.getFirstName().equals("Pulkit"));
 	}
 
 }

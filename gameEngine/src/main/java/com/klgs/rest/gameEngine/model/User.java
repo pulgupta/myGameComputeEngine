@@ -3,18 +3,21 @@ package com.klgs.rest.gameEngine.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /**
- * The user Entity. This will allow us to store user data and link users to teams
+ * The user Entity will allow us to store user data and link users to teams and questions raised by them
  * @author pulgupta
  * To make things truly anonymous we are not tracking which user has casted which votes.
- * We can only see to which team user belong.
+ * We can only see to which team user belong and which questions he has raised.
  */
 
 @Entity
@@ -22,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "uid")})
 public class User {
 	
+	//This GUID will only be used to link certain trails. Otherwise we will be using the email ID as the actual primary key
 	private String uid;
 	private String FirstName;
 	private String LastName;
@@ -34,12 +38,15 @@ public class User {
 	private Date dob;
 	private String Bio;
 	
-	//A user can be a participant in multiple teams
-	@ElementCollection
-	private Set<String> teamParticipantUids;
+	//A user can be a participant in multiple teams and a team can have multiple users
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="user_team", joinColumns = { @JoinColumn(name = "user_email_id") }, inverseJoinColumns = { @JoinColumn(name = "team_id") })
+	private Set<Team> teams;
+	
+	//Will be false one the user deactivates his account
 	private boolean isActive;
 	
-	
+	//*************************GETTERS AND SETTERS***********************
 	public boolean isActive() {
 		return isActive;
 	}
@@ -104,18 +111,18 @@ public class User {
 		Bio = bio;
 	}
 
-	public Set<String> getTeamParticipantUids() {
-		return teamParticipantUids;
+	public Set<Team> getTeamParticipantUids() {
+		return teams;
 	}
 
-	public void setTeamParticipantUids(Set<String> teamParticipantUids) {
-		this.teamParticipantUids = teamParticipantUids;
+	public void setTeamParticipantUids(Set<Team> teams) {
+		this.teams = teams;
 	}
 
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
 				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", teamParticipantUids="
-				+ teamParticipantUids + ", isActive=" + isActive + "]";
+				+ teams + ", isActive=" + isActive + "]";
 	}
 }

@@ -2,12 +2,14 @@ package com.klgs.rest.gameEngine.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,19 +19,22 @@ public class Team {
 	String teamId;
 	@Column(name="Name" , unique=true, nullable=false)
 	String teamName;
+	
 	//The user who has created the team and thus is the default owner of the team
 	//Only this user can edit the team
-	
 	@OneToOne
 	User owner;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	//A team can have many users and one user can belong to many teams
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "teams")
 	Set<User> teammates;
 	
 	//List of all the questions on which this team has access
-	@ElementCollection
-	Set<String> questionIds;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="team_question", joinColumns = { @JoinColumn(name = "teamId") }, inverseJoinColumns = { @JoinColumn(name = "questionId") })
+	Set<Question> questionIds;
 
+	
 	//******************************GETTERS AND SETTERS*************************
 	public String getTeamId() {
 		return teamId;
@@ -63,11 +68,11 @@ public class Team {
 		this.teammates = teammates;
 	}
 
-	public Set<String> getQuestionIds() {
+	public Set<Question> getQuestionIds() {
 		return questionIds;
 	}
 
-	public void setQuestionIds(Set<String> questionIds) {
+	public void setQuestionIds(Set<Question> questionIds) {
 		this.questionIds = questionIds;
 	}
 

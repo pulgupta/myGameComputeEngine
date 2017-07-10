@@ -4,10 +4,14 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 /**
  * THe question entity
@@ -21,7 +25,10 @@ public class Question {
 	@Id
 	private String questionId;
 	private String question;
-	@ElementCollection
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name="question_options",
+			joinColumns=@JoinColumn(name = "questionid", referencedColumnName = "questionId"))
 	private Set<String> options;
 	private String optionsCsv;
 	private String tags;
@@ -31,37 +38,16 @@ public class Question {
 	//The user who has create this question
 	@OneToOne
 	private User owner;
-	private Boolean isPublic;
 	
+	private Boolean isPublic;
 	//In case the isPublic flag is false then in that case a question will be available to certain teams only 
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "questionIds")
+	private Set<Team> teamACL;
+	
 	@ElementCollection
-	private Set<String> teamIds;
-	@ElementCollection
+	@CollectionTable(joinColumns=@JoinColumn(name = "questionid", referencedColumnName = "questionId"))
 	private Map<String, Integer> voteStatistics;
     
-	//This being just the entity class we will remove all the business logic out of this class
-	/*public void addVote(String option) {
-		voteStatistics.put(option, voteStatistics.get(option)+1);
-	}
-	
-	public int getVote(String option) {
-		return voteStatistics.get(option);
-	}
-	
-	public boolean checkOption(String option) {
-		if(voteStatistics.containsKey(option))
-			return true;
-		return false;
-	}
-
-	//In case we are getting the options as a csv we can create the set out of it using the below method
-	public void splitAndSaveQuestion() {
-		String[] optionArray = this.optionsCsv.split(",");
-		List<String> optionsList = Arrays.asList(optionArray);
-		for(String option : optionsList)
-			this.options.add(option);
-	}
-	*/
 	//********************GETTERS AND SETTERS*********************************************************
 	public String getQuestionId() {
 		return questionId;
@@ -135,12 +121,12 @@ public class Question {
 		this.isPublic = isPublic;
 	}
 
-	public Set<String> getTeamIds() {
-		return teamIds;
+	public Set<Team> getTeamIds() {
+		return teamACL;
 	}
 
-	public void setTeamIds(Set<String> teamIds) {
-		this.teamIds = teamIds;
+	public void setTeamIds(Set<Team> teamACL) {
+		this.teamACL = teamACL;
 	}
 
 	public Map<String, Integer> getVotestatistics() {
@@ -155,7 +141,7 @@ public class Question {
 	public String toString() {
 		return "Question [questionId=" + questionId + ", question=" + question + ", options=" + options
 				+ ", optionsCsv=" + optionsCsv + ", tags=" + tags + ", dateCreated=" + dateCreated + ", lastUpdated="
-				+ lastUpdated + ", owner=" + owner + ", isPublic=" + isPublic + ", teamIds=" + teamIds
+				+ lastUpdated + ", owner=" + owner + ", isPublic=" + isPublic + ", teamACL=" + teamACL
 				+ ", voteStatistics=" + voteStatistics + "]";
 	}
     
