@@ -13,7 +13,7 @@ import com.klgs.rest.gameEngine.dao.UserDAO;
 import com.klgs.rest.gameEngine.model.User;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8282"})
 @RequestMapping(value="/user")
 public class UserRest {
 	

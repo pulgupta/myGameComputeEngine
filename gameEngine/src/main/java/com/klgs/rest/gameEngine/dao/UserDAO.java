@@ -7,7 +7,7 @@ import com.klgs.rest.gameEngine.model.User;
 @Component
 public interface UserDAO {
 	public void createUser(User user);
-	public void updateUser();
-	public void deleteUser();
+	public void updateUser(User user);
+	public void deleteUser(User user);
 	public User getUser(String emailId);
 }

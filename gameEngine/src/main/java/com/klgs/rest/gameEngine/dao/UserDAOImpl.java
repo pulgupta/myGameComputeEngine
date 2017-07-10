@@ -21,13 +21,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public void updateUser() {
+	public void updateUser(User user) {
 		
 	}
 	
 	//We will never delete the data. We will just make the user inactive
 	@Override
-	public void deleteUser() {
+	public void deleteUser(User user) {
 		
 	}
 	

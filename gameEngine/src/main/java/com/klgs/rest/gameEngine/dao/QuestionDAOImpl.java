@@ -17,7 +17,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 	}
 
 	@Override
-	public void deleteQuestion(String questionId) {
+	public void deleteQuestion(Question question) {
 		// TODO Auto-generated method stub
 		
 	}

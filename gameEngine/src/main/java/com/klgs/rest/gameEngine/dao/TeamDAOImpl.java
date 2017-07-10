@@ -17,7 +17,7 @@ public class TeamDAOImpl implements TeamDAO {
 	}
 
 	@Override
-	public void deleteTeam(String teamId) {
+	public void deleteTeam(Team team) {
 		// TODO Auto-generated method stub
 		
 	}

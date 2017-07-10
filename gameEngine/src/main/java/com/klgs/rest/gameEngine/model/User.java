@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The user Entity will allow us to store user data and link users to teams and questions raised by them
  * @author pulgupta
@@ -26,6 +28,7 @@ import javax.persistence.UniqueConstraint;
 public class User {
 	
 	//This GUID will only be used to link certain trails. Otherwise we will be using the email ID as the actual primary key
+	@JsonIgnore
 	private String uid;
 	private String FirstName;
 	private String LastName;
@@ -44,6 +47,7 @@ public class User {
 	private Set<Team> teams;
 	
 	//Will be false one the user deactivates his account
+	@JsonIgnore
 	private boolean isActive;
 	
 	//*************************GETTERS AND SETTERS***********************

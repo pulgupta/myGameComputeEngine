@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.klgs.rest.gameEngine.model.Question;
 import com.klgs.rest.gameEngine.model.Team;
 
+@Deprecated
 @Component
 public class InMemoryStore {
 	Map<String, Question> questionStore = null;
