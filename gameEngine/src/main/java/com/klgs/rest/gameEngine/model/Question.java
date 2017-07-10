@@ -4,15 +4,24 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 /**
  * THe question entity
  * @author pulgupta
  * Each question will either be open to all or to available to certain team ids.
  */
+
+@Entity
 public class Question {
 	
+	@Id
 	private String questionId;
 	private String question;
+	@ElementCollection
 	private Set<String> options;
 	private String optionsCsv;
 	private String tags;
@@ -20,11 +29,14 @@ public class Question {
 	private Date lastUpdated;
 	
 	//The user who has create this question
+	@OneToOne
 	private User owner;
 	private Boolean isPublic;
 	
 	//In case the isPublic flag is false then in that case a question will be available to certain teams only 
+	@ElementCollection
 	private Set<String> teamIds;
+	@ElementCollection
 	private Map<String, Integer> voteStatistics;
     
 	//This being just the entity class we will remove all the business logic out of this class

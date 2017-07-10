@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -34,6 +35,7 @@ public class User {
 	private String Bio;
 	
 	//A user can be a participant in multiple teams
+	@ElementCollection
 	private Set<String> teamParticipantUids;
 	private boolean isActive;
 	

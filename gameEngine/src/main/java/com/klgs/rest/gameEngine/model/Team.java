@@ -3,6 +3,7 @@ package com.klgs.rest.gameEngine.model;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -22,10 +23,11 @@ public class Team {
 	@OneToOne
 	User owner;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
+	@OneToMany(fetch = FetchType.LAZY)
 	Set<User> teammates;
 	
 	//List of all the questions on which this team has access
+	@ElementCollection
 	Set<String> questionIds;
 
 	//******************************GETTERS AND SETTERS*************************
