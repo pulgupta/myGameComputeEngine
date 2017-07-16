@@ -41,6 +41,8 @@ public class User {
 	private Date dob;
 	private String Bio;
 	private Role role;
+	private int credits;
+	private Set<User> followers;
 	
 	enum Role {
 		USER,
@@ -49,9 +51,6 @@ public class User {
 		SUPERUSER
 	}
 	//A user can be a participant in multiple teams and a team can have multiple users
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="user_team", joinColumns = { @JoinColumn(name = "user_email_id") }, inverseJoinColumns = { @JoinColumn(name = "team_id") })
-	private Set<Team> teams;
 	
 	//Will be false one the user deactivates his account
 	@JsonIgnore
@@ -122,14 +121,6 @@ public class User {
 		Bio = bio;
 	}
 
-	public Set<Team> getTeamParticipantUids() {
-		return teams;
-	}
-
-	public void setTeamParticipantUids(Set<Team> teams) {
-		this.teams = teams;
-	}
-
 	public Role getRole() {
 		return role;
 	}
@@ -138,19 +129,28 @@ public class User {
 		this.role = role;
 	}
 
-	public Set<Team> getTeams() {
-		return teams;
+	public int getCredits() {
+		return credits;
 	}
 
-	public void setTeams(Set<Team> teams) {
-		this.teams = teams;
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public Set<User> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(Set<User> followers) {
+		this.followers = followers;
 	}
 
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
-				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", role=" + role + ", teams=" + teams
-				+ ", isActive=" + isActive + "]";
+				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", role=" + role + ", credits=" + credits
+				+ ", followers=" + followers  + ", isActive=" + isActive + "]";
 	}
+
 }
 	
