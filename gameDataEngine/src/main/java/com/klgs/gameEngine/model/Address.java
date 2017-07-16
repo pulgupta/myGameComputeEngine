@@ -2,10 +2,18 @@ package com.klgs.gameEngine.model;
 
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
+	
+	@Id
+	@GeneratedValue
+	private String id;
 	
 	private String AddressLine1;
 	private String AddressLine2;
@@ -13,12 +21,17 @@ public class Address {
 	//As of now only value for this will be India
 	private String country;
 	private String pincode;
-	private  String description;
+	private String description;
 	private String comments;
 	//In India it can only be string but in other countries it can be anything
+	@OneToOne
 	private User moderator;
 	
-	private Set<Address> sublocations;
+	@ElementCollection
+	private Set<String> sublocations;
+	
+	@ElementCollection
+	private Set<String> stories;
 	
 	//GETTER AND SETTERS AND TOSTRING
 	
@@ -70,17 +83,25 @@ public class Address {
 	public void setModerator(User moderator) {
 		this.moderator = moderator;
 	}
-	public Set<Address> getSublocations() {
+	public Set<String> getSublocations() {
 		return sublocations;
 	}
-	public void setSublocations(Set<Address> sublocations) {
+	public void setSublocations(Set<String> sublocations) {
 		this.sublocations = sublocations;
+	}
+	public Set<String> getStories() {
+		return stories;
+	}
+	public void setStories(Set<String> stories) {
+		this.stories = stories;
 	}
 	
 	@Override
 	public String toString() {
 		return "Address [AddressLine1=" + AddressLine1 + ", AddressLine2=" + AddressLine2 + ", city=" + city
 				+ ", country=" + country + ", pincode=" + pincode + ", description=" + description + ", comments="
-				+ comments + ", moderator=" + moderator + "]";
+				+ comments + ", moderator=" + moderator + ", sublocations=" + sublocations + ", stories=" + stories
+				+ "]";
 	}
+	
 }

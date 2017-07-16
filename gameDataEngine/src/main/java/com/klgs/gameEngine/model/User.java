@@ -3,13 +3,10 @@ package com.klgs.gameEngine.model;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -42,7 +39,11 @@ public class User {
 	private String Bio;
 	private Role role;
 	private int credits;
-	private Set<User> followers;
+	
+	//Email Ids of the followers
+	//We can't just use mapping here as that will mean that Hibernate will load the complete tree of followers 
+	@ElementCollection
+	private Set<String> followers;
 	
 	enum Role {
 		USER,
@@ -55,6 +56,10 @@ public class User {
 	//Will be false one the user deactivates his account
 	@JsonIgnore
 	private boolean isActive;
+	//Again in this case we don't want Hibernate to load the complete set.
+	//We will make a separate REST call in case we need to get the stories
+	@ElementCollection
+	private Set<String> storiesPublished;
 	
 	//*************************GETTERS AND SETTERS***********************
 	public boolean isActive() {
@@ -137,19 +142,28 @@ public class User {
 		this.credits = credits;
 	}
 
-	public Set<User> getFollowers() {
+	public Set<String> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(Set<User> followers) {
+	public void setFollowers(Set<String> followers) {
 		this.followers = followers;
+	}
+
+	public Set<String> getStoriesPublished() {
+		return storiesPublished;
+	}
+
+	public void setStoriesPublished(Set<String> storiesPublished) {
+		this.storiesPublished = storiesPublished;
 	}
 
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
 				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", role=" + role + ", credits=" + credits
-				+ ", followers=" + followers  + ", isActive=" + isActive + "]";
+				+ ", followers=" + followers + ", isActive=" + isActive + ", storiesPublished=" + storiesPublished
+				+ "]";
 	}
 
 }

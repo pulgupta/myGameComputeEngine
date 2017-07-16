@@ -4,14 +4,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Story {
 
+	@Id
+	@GeneratedValue
+	private String id;
+	
 	private String content;
+	
+	@ManyToOne
 	private User author;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="story")
 	private List<Comment> comments;
+	
+	@ManyToOne
 	private Address location;
 	private Date createdOn;
 	private Date updatedOn;
+	
+	@ElementCollection
 	private Set<Tags> tags;
 	
 	//Keep on increasing these tags
