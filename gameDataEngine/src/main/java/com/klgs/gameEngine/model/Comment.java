@@ -4,10 +4,15 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Comment {
@@ -22,7 +27,9 @@ public class Comment {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Story story;
 	//If this comment is put on another comment then we will see the comment
-	@OneToMany(mappedBy="id")
+	@OneToMany(fetch = FetchType.EAGER)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	private Set<Comment> replies;
 	
 	public String getId() {
