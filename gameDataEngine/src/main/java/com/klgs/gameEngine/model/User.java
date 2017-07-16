@@ -40,7 +40,14 @@ public class User {
 	private String userName;
 	private Date dob;
 	private String Bio;
+	private Role role;
 	
+	enum Role {
+		USER,
+		MODERATOR,
+		ADMIN,
+		SUPERUSER
+	}
 	//A user can be a participant in multiple teams and a team can have multiple users
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="user_team", joinColumns = { @JoinColumn(name = "user_email_id") }, inverseJoinColumns = { @JoinColumn(name = "team_id") })
@@ -123,10 +130,27 @@ public class User {
 		this.teams = teams;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Set<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
+	}
+
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", FirstName=" + FirstName + ", LastName=" + LastName + ", emailId=" + emailId
-				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", teamParticipantUids="
-				+ teams + ", isActive=" + isActive + "]";
+				+ ", userName=" + userName + ", dob=" + dob + ", Bio=" + Bio + ", role=" + role + ", teams=" + teams
+				+ ", isActive=" + isActive + "]";
 	}
 }
+	
