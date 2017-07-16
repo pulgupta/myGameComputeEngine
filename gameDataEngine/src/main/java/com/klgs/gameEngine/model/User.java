@@ -3,12 +3,19 @@ package com.klgs.gameEngine.model;
 import java.util.Date;
 import java.util.Set;
 
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -58,8 +65,10 @@ public class User {
 	private boolean isActive;
 	//Again in this case we don't want Hibernate to load the complete set.
 	//We will make a separate REST call in case we need to get the stories
-	@ElementCollection
-	private Set<String> storiesPublished;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+	@Cascade(CascadeType.ALL)
+	@Fetch(FetchMode.SELECT)
+	private Set<Story> storiesPublished;
 	
 	//*************************GETTERS AND SETTERS***********************
 	public boolean isActive() {
@@ -150,11 +159,11 @@ public class User {
 		this.followers = followers;
 	}
 
-	public Set<String> getStoriesPublished() {
+	public Set<Story> getStoriesPublished() {
 		return storiesPublished;
 	}
 
-	public void setStoriesPublished(Set<String> storiesPublished) {
+	public void setStoriesPublished(Set<Story> storiesPublished) {
 		this.storiesPublished = storiesPublished;
 	}
 
